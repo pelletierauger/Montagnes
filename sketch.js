@@ -294,16 +294,16 @@ draw = function() {
     // drawAlligatorQuiet(currentProgram);
 // 
 // 
-    // if (griArr) {
+    if (ge.t) {
     ge.eraseCanvas("sh.js", 0, 0, 109, 25);
         scdDisplay();
     ge.canvasToCanvasSubtract("sh2.js", 0, 0, 109, 25, "sh.js", 0, 0);
     ge.canvasToCanvasAdd("sketch.js", 0, 0, 109, 25, "sh.js", 0, 0);
+    }
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
         gl.useProgram(currentProgram);
         drawTerminal(currentProgram);
-    // }
     // drawSwirl(currentProgram);
     // drawPulsar(currentProgram);
 // 
@@ -729,6 +729,8 @@ buzzY = 1;
     }
 }
 
+}
+
 buzz = 0.1;
 buzzY = 1;
 scdDisplay = function() {
@@ -763,10 +765,10 @@ scdDisplay = function() {
         return Math.sin(t) * 0.5 + 0.5;
     }
 }
-scdDisplay();
+// scdDisplay();
 
 
-}
+
 
 
 logLatency = function() {
