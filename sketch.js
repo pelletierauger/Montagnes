@@ -295,10 +295,10 @@ draw = function() {
 // 
 // 
     if (ge.t) {
-    ge.eraseCanvas("sh.js", 0, 0, 109, 25);
+        ge.eraseCanvas("sh.js", 0, 0, 109, 25);
         scdDisplay();
-    ge.canvasToCanvasSubtract("sh2.js", 0, 0, 109, 25, "sh.js", 0, 0);
-    ge.canvasToCanvasAdd("sketch.js", 0, 0, 109, 25, "sh.js", 0, 0);
+        ge.canvasToCanvasSubtract("sh2.js", 37, 5, 109 - 37, 23, "sh.js", 37, 5);
+        ge.canvasToCanvasAdd("sketch.js", 0, 0, 109, 25, "sh.js", 0, 0);
     }
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
