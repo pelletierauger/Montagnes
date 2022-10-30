@@ -5265,6 +5265,7 @@ newFlickeringVert.vertText = `
     // beginGLSL
     attribute float vertexID;
     uniform float time;
+    uniform float resolution;
     varying float alph;
     varying vec3 cols;
     #define cx_mul(a, b) vec2(a.x*b.x-a.y*b.y, a.x*b.y+a.y*b.x)
@@ -5385,9 +5386,9 @@ newFlickeringVert.vertText = `
         gl_PointSize = 20. - (60. * pos.z * 0.01);
         alph = 0.25 * 0.75;
         cols = vec3(0.65 + 0.5 / pos.z);
-       float vig = (roundedRectangle(pos.xy * 1.5 / pos.z, vec2(0.0, 0.0), vec2(1.82, 0.91) * 0.065, 0.0025, 0.125) + 0.0);
+       float vig = (roundedRectangle(pos.xy * 1.5 / pos.z, vec2(0.0, 0.0), vec2(1.93, 1.035) * 0.0657, 0.0025, 0.02) + 0.0);
         cols = mix(cols, cols * floor(vig), 1.);
-        gl_PointSize *= floor(vig);
+        gl_PointSize *= floor(vig) * 2.0 * resolution;
     }
     // endGLSL
 `;
@@ -6183,6 +6184,7 @@ newFlickeringVert.vertText = `
     // beginGLSL
     attribute float vertexID;
     uniform float time;
+    uniform float resolution;
     varying float alph;
     varying vec3 cols;
     #define cx_mul(a, b) vec2(a.x*b.x-a.y*b.y, a.x*b.y+a.y*b.x)
@@ -6330,7 +6332,7 @@ newFlickeringVert.vertText = `
         cols = vec3(0.65 + 0.5 / pos.z);
        float vig = (roundedRectangle(pos.xy * 1.5 / pos.z, vec2(0.0, 0.0), vec2(1.82, 0.96) * 0.026 * 2.69, 0.001, 0.05) + 0.0);
         cols = mix(cols, cols * floor(vig), 1.);
-        gl_PointSize *= floor(vig);
+        gl_PointSize *= floor(vig) * 2.0 * resolution;
     }
     // endGLSL
 `;
