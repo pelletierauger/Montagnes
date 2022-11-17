@@ -5,7 +5,7 @@ let gr;
 let mode = 0;
 let keysActive = true;
 let socket, cnvs, ctx, canvasDOM;
-let fileName = "/Volumes/Volumina/frames/grimoire/gri";
+let fileName = "/Volumes/Volumina/frames/grimoire/feu";
 let JSONs = [];
 let maxFrames = Infinity;
 let gl;
@@ -36,7 +36,7 @@ for (let i = 0; i < 1000000; i++) {
 }
 fvertices = new Float32Array(fvertices);
 
-let resolutionScalar = 0.5;
+let resolutionScalar = 1;
 let resolutionBG;
 
 let fmouse = [0, 0];
@@ -254,6 +254,7 @@ function setup() {
     }, 1);
     if (batchExport) {
         exportCount = batchMin;
+        drawCount = exportCount;
         exporting = true;
         redraw();
         songPlay = false;
@@ -295,10 +296,14 @@ draw = function() {
 // 
 // 
     if (ge.t) {
-        ge.eraseCanvas("sh.js", 0, 0, 109, 25);
-        scdDisplay();
-        ge.canvasToCanvasSubtract("sh2.js", 37, 5, 109 - 37, 23, "sh.js", 37, 5);
-        ge.canvasToCanvasAdd("sketch.js", 0, 0, 109, 25, "sh.js", 0, 0);
+        // ge.eraseCanvas("sh.js", 0, 0, 109, 25);
+        // scdDisplay();
+        let arr = [0, 1, 2, 1];
+        let fra = 146 + 25 * arr[(Math.floor(drawCount * 0.2 * 0.1) % 4)];
+        // console.log(fra);
+        ge.canvasToCanvas("dots.js", 0, fra, 109, fra + 25, "dots.js", 0, 219);
+        ge.paintOther("dots.js", (75 - (fra - 146) - 2) * -1);
+        // ge.canvasToCanvasAdd("sketch.js", 0, 0, 109, 25, "sh.js", 0, 0);
     }
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
@@ -502,6 +507,7 @@ draw = function() {
         }    
         drawCount += drawIncrement;
         exportCount++;
+        drawCount = exportCount;
     }
 }
 
