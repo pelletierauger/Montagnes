@@ -298,12 +298,14 @@ draw = function() {
     if (ge.t) {
         // ge.eraseCanvas("sh.js", 0, 0, 109, 25);
         // scdDisplay();
-        let arr = [0, 1, 2, 1];
-        let fra = 146 + 25 * arr[(Math.floor(drawCount * 0.2 * 0.1) % 4)];
+        // let arr = [0, 1, 2, 1];
+        // let fra = 146 + 25 * arr[(Math.floor(drawCount * 0.2 * 0.1) % 4)];
         // console.log(fra);
-        ge.canvasToCanvas("dots.js", 0, fra, 109, fra + 25, "dots.js", 0, 219);
-        ge.paintOther("dots.js", (75 - (fra - 146) - 2) * -1);
+        // ge.canvasToCanvas("dots.js", 0, fra, 109, fra + 25, "dots.js", 0, 219);
+        // ge.paintOther("dots.js", (75 - (fra - 146) - 2) * -1);
         // ge.canvasToCanvasAdd("sketch.js", 0, 0, 109, 25, "sh.js", 0, 0);
+        let l = Math.sin(drawCount * 0.025) * 0.5 + 0.5;
+        ge.xFadeCanvases("dots.js", 0, 146, 109, 146 + 25, "dots.js", 0, 196 - 0, "dots.js", 0, 433, l);
     }
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
