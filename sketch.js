@@ -310,7 +310,7 @@ draw = function() {
         for (let i = 0; i < 300; i++) {
             let x = Math.floor(Math.cos(i + drawCount * 0.000125 * i) * i * 0.9) + 370;
             let y = Math.floor(Math.sin(i + drawCount * 0.000125 * i) * i * 0.5) + 110; 
-            paintStatic(ge.t.name, x, y, ge.activeBrush, patterns[i % 6]);
+            paintStatic(ge.t.name, x, y, ge.activeBrush, patterns[Math.floor(i * 0.1 * (Math.sin(drawCount * 0.1) * 0.5 + 0.5)) % 6]);
         }
     }
         currentProgram = getProgram("rounded-square");
