@@ -324,12 +324,14 @@ draw = function() {
                 y += Math.floor((openSimplex.noise2D(drawCount * 1e-1, x + 1000) * 0.5 + 0.5) * 10);
                 let p = (y < prevY) ? patterns[Math.floor(a*12) % 8] : patterns[0];
                 let v = (j == 9) ? 0 : 1;
+                if (y < 24 * 9) {
                     paintStatic("dots.js", x, y, ge.activeBrush, p, v);
+                }
                 prevY = y;
             }
         }
-                ge.canvasToCanvasSubtract("sh2.js", 0, 0, 109, 0 + 25, "dots.js", 0, 0);
-                ge.canvasToCanvasAdd("sh.js", 0, 0, 109, 0 + 25, "dots.js", 0, 0);
+                ge.canvasToCanvasSubtract("sh2.js", 10, 0, 80, 0 + 25, "dots.js", 10, 0);
+                ge.canvasToCanvasAdd("sketch.js", 40, 0, 65, 0 + 25, "dots.js", 40, 0);
     }
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
