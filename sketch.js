@@ -305,7 +305,13 @@ draw = function() {
         // ge.paintOther("dots.js", (75 - (fra - 146) - 2) * -1);
         // ge.canvasToCanvasAdd("sketch.js", 0, 0, 109, 25, "sh.js", 0, 0);
         let l = Math.sin(drawCount * 0.025) * 0.5 + 0.5;
-        ge.xFadeCanvases("dots.js", 0, 146, 109, 146 + 25, "dots.js", 0, 196 - 0, "dots.js", 0, 433, l);
+        // ge.xFadeCanvases("dots.js", 0, 146, 109, 146 + 25, "dots.js", 0, 196 - 0, "dots.js", 0, 433, l);
+        ge.clearCanvas();
+        for (let i = 0; i < 300; i++) {
+            let x = Math.floor(Math.cos(i + drawCount * 0.000125 * i) * i * 0.9) + 370;
+            let y = Math.floor(Math.sin(i + drawCount * 0.000125 * i) * i * 0.5) + 110; 
+            paintStatic(ge.t.name, x, y, ge.activeBrush, patterns[i % 6]);
+        }
     }
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
