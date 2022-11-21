@@ -295,7 +295,7 @@ draw = function() {
     // drawAlligatorQuiet(currentProgram);
 // 
 // 
-    if (ge.t) {
+    if (ge.t && ge.t.name == "dots.js") {
         // ge.eraseCanvas("sh.js", 0, 0, 109, 25);
         // scdDisplay();
         // let arr = [0, 1, 2, 1];
@@ -306,12 +306,30 @@ draw = function() {
         // ge.canvasToCanvasAdd("sketch.js", 0, 0, 109, 25, "sh.js", 0, 0);
         let l = Math.sin(drawCount * 0.025) * 0.5 + 0.5;
         // ge.xFadeCanvases("dots.js", 0, 146, 109, 146 + 25, "dots.js", 0, 196 - 0, "dots.js", 0, 433, l);
-        ge.clearCanvas();
-        for (let i = 0; i < 300; i++) {
-            let x = Math.floor(Math.cos(i + drawCount * 0.000125 * i) * i * 0.9) + 370;
-            let y = Math.floor(Math.sin(i + drawCount * 0.000125 * i) * i * 0.5) + 110; 
-            paintStatic(ge.t.name, x, y, ge.activeBrush, patterns[Math.floor(i * 0.1 * (Math.sin(drawCount * 0.1) * 0.5 + 0.5)) % 6]);
+        // ge.clearCanvas();
+        ge.eraseCanvas("dots.js", 0, 0, 109, 25);
+        // for (let i = 0; i < 300; i++) {
+        //     let x = Math.floor(Math.cos(i + drawCount * 0.000125 * i) * i * 0.9) + 370;
+        //     let y = Math.floor(Math.sin(i + drawCount * 0.000125 * i) * i * 0.5) + 110; 
+        //     paintStatic(ge.t.name, x, y, ge.activeBrush, patterns[Math.floor(i * 0.1 * (Math.sin(drawCount * 0.1) * 0.5 + 0.5)) % 6]);
+        // }
+        let prevY = 0;
+        for (let j = 0; j < 10; j++) {
+            for (let i = 0; i < 150; i++) {
+                // let x = Math.floor(Math.cos(i + drawCount * 0.000125 * i) * i * 0.9) + 370;
+                // let y = Math.floor(Math.sin(i + drawCount * 0.000125 * i) * i * 0.5) + 110; 
+                let a = map(j, 0, 20, 0.2, 1.2);
+                let x = i * 2.5 * 2;
+                let y = Math.floor((openSimplex.noise2D(drawCount * 1e-2 + j * 0.25, x * 0.5e-2 + drawCount * -1e-2)*0.5+0.5) * -500 * a) + 300;
+                y += Math.floor((openSimplex.noise2D(drawCount * 1e-1, x + 1000) * 0.5 + 0.5) * 10);
+                let p = (y < prevY) ? patterns[Math.floor(a*12) % 8] : patterns[0];
+                let v = (j == 9) ? 0 : 1;
+                    paintStatic("dots.js", x, y, ge.activeBrush, p, v);
+                prevY = y;
+            }
         }
+                ge.canvasToCanvasSubtract("sh2.js", 0, 0, 109, 0 + 25, "dots.js", 0, 0);
+                ge.canvasToCanvasAdd("sh.js", 0, 0, 109, 0 + 25, "dots.js", 0, 0);
     }
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
