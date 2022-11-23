@@ -106,6 +106,7 @@ ge.getTab("dots.js").display = function() {
 
 
 celine = ge.makeBlurredArray("sh3.js", 0, 61, 109, 61 + 25);
+nina = ge.makeBlurredArray("sh3.js", 0, ge.t.scroll.y, 109, ge.t.scroll.y + 25)
 
 ge.getTab("sh3.js").display = function() {
     bindFrameBuffer(texture, framebuf);
@@ -126,6 +127,7 @@ ge.getTab("sh3.js").display = function() {
     gl.useProgram(currentProgram);
     let l = openSimplex.noise2D(drawCount * 5e-2, drawCount * 5e-2 + 1e3)* 0.5 + 0.5;
     ge.xFadeWithZeroes("sh3.js", 0, 61, 109, 61 + 25,"sh3.js", 0, 61 + 25, l, celine)
+    ge.xFadeWithZeroesAdd("sh3.js", 0, 782, 109, 782 + 25,"sh3.js", 0, 61 + 25, 1 - l, nina)
     drawTerminal(currentProgram);
     // drawSwirl(currentProgram);
     // drawPulsar(currentProgram);
