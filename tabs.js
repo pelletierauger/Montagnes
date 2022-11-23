@@ -106,7 +106,7 @@ ge.getTab("dots.js").display = function() {
 
 
 celine = ge.makeBlurredArray("sh3.js", 0, 61, 109, 61 + 25);
-nina = ge.makeBlurredArray("sh3.js", 0, ge.t.scroll.y, 109, ge.t.scroll.y + 25)
+nina = ge.makeBlurredArray("sh3.js", 0, 782, 109, 782 + 25)
 
 ge.getTab("sh3.js").display = function() {
     bindFrameBuffer(texture, framebuf);
